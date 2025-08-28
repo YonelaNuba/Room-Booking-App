@@ -1,0 +1,17 @@
+
+@using Microsoft.AspNetCore.Identity
+@using RoomBookingSystem.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item"><span class="navbar-text me-3">Hello, @User.Identity!.Name</span></li>
+    <li class="nav-item"><form asp-controller="Account" asp-action="Logout" method="post" class="d-inline"><button class="btn btn-sm btn-outline-light">Logout</button></form></li>
+}
+else
+{
+    <li class="nav-item"><a class="btn btn-sm btn-outline-light" asp-controller="Account" asp-action="Login">Login</a></li>
+}
+</ul>
