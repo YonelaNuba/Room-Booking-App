@@ -1,0 +1,34 @@
+﻿@model IEnumerable<RoomBookingSystem.Models.Booking>
+@{
+    ViewData["Title"] = "All Bookings";
+}
+
+<h2>All Bookings</h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Room</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Recurring</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model)
+        {
+            <tr>
+                <td>@b.User.Email</td>
+                <td>@b.Room.Name</td>
+                <td>@b.StartTime.ToLocalTime()</td>
+                <td>@b.EndTime.ToLocalTime()</td>
+                <td>@b.Recurrence</td>
+                <td>
+                    <a asp-action="Reschedule" asp-route-id="@b.Id" class="btn btn-sm btn-warning">Reschedule</a>
+                    <a asp-action="Cancel" asp-route-id="@b.Id" class="btn btn-sm btn-danger">Cancel</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

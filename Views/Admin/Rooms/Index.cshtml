@@ -1,0 +1,33 @@
+﻿@model IEnumerable<RoomBookingSystem.Models.Room>
+@{
+    ViewData["Title"] = "Rooms Management";
+}
+
+<h2>Rooms</h2>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add Room</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Capacity</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.Name</td>
+                <td>@r.Capacity</td>
+                <td>
+                    <form asp-action="Delete" asp-route-id="@r.Id" method="post" onsubmit="return confirm('Delete this room?');">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
